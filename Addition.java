@@ -3,7 +3,7 @@
 import javax.swing.JOptionPane; 
 
 public class Addition 
-{ // início do bloco de código
+{
    public static void main(String[] args)
    {
       // obtain user input from JOptionPane input dialogs
