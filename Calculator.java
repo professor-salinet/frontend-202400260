@@ -14,6 +14,8 @@ public class Calculator extends JFrame {
     private final JLabel lblNotificacao;
 
     private final String[] numeros = {"1","2","3","4","5","6","7","8","9","0"};
+
+    private final int tamanhoTextFields = 9;
  
     public Calculator()
     {
@@ -41,9 +43,9 @@ public class Calculator extends JFrame {
         textField1.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (textField1.getText().length() > 9) {
+                if (textField1.getText().length() > tamanhoTextFields) {
                     String txtTextField1 = textField1.getText();
-                    textField1.setText(txtTextField1.substring(0,9));
+                    textField1.setText(txtTextField1.substring(0,tamanhoTextFields));
                     lblNotificacao.setText("<html><body>Ops! Este campo está limitado a apenas 9 caracteres.</body></html>");
                 }
             }
@@ -52,9 +54,9 @@ public class Calculator extends JFrame {
         textField2.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (textField2.getText().length() > 9) {
+                if (textField2.getText().length() > tamanhoTextFields) {
                     String txtTextField2 = textField2.getText();
-                    textField2.setText(txtTextField2.substring(0,9));
+                    textField2.setText(txtTextField2.substring(0,tamanhoTextFields));
                     lblNotificacao.setText("<html><body>Ops! Este campo está limitado a apenas 9 caracteres.</body></html>");
                 }
             }
