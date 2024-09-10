@@ -11,13 +11,13 @@ public class MySQLConnector {
         String mysqlUrl = "jdbc:mysql://" + mysqlHost + ":" + mysqlPort + "/" + mysqlDb + "?user=" + mysqlUser + "&password=" + mysqlPassword;
         Connection conn = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             conn = DriverManager.getConnection(mysqlUrl);
             status = "Conexão realizada com sucesso!";
-        } catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+        } catch (Exception e) {
             status = "Ops! Algo de errado não está certo com a conexão com o banco de dados MySQL! Mensagem do servidor: " + e;
         }
-        // System.out.println(status);
+        System.out.println(status);
         return conn;
     }
 }
