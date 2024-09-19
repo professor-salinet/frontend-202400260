@@ -3,29 +3,28 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-public class TelaDePesquisa extends JFrame
-{
-    private final JLabel lblPesquisa;
-    private final JTextField txtPesquisa;
+public class TelaDePesquisa extends JFrame {
+    public static JLabel lblPesquisa;
+    public static JTextField txtPesquisa;
 
-    private final JLabel lblId;
-    private final JTextField txtId;
+    public static JLabel lblId;
+    public static JTextField txtId;
 
-    private final JLabel lblNome;
-    private final JTextField txtNome;
+    public static JLabel lblNome;
+    public static JTextField txtNome;
 
-    private final JLabel lblEmail;
-    private final JTextField txtEmail;
+    public static JLabel lblEmail;
+    public static JTextField txtEmail;
 
-    private final JButton btnPesquisar;
-    private final JButton btnPrimeiro;
-    private final JButton btnAnterior;
-    private final JButton btnProximo;
-    private final JButton btnUltimo;
+    public static JButton btnPesquisar;
+    public static JButton btnPrimeiro;
+    public static JButton btnAnterior;
+    public static JButton btnProximo;
+    public static JButton btnUltimo;
 
-    private final JLabel lblNotificacoes;
+    public static JLabel lblNotificacoes;
 
-    private final int tamanhoInputs = 20;
+    public static int tamanhoInputs = 20;
 
     public TelaDePesquisa()
     {
@@ -56,6 +55,7 @@ public class TelaDePesquisa extends JFrame
         linha_id.add(lblId);
 
         txtId = new JTextField(tamanhoInputs);
+        txtId.setEnabled(false);
         linha_id.add(txtId);
 
         add(linha_id);
@@ -66,6 +66,7 @@ public class TelaDePesquisa extends JFrame
         linha_nome.add(lblNome);
 
         txtNome = new JTextField(tamanhoInputs);
+        txtNome.setEditable(false);
         linha_nome.add(txtNome);
 
         add(linha_nome);
@@ -76,6 +77,7 @@ public class TelaDePesquisa extends JFrame
         linha_email.add(lblEmail);
 
         txtEmail = new JTextField(10);
+        txtEmail.setEditable(false);
         linha_email.add(txtEmail);
 
         add(linha_email);
@@ -113,21 +115,7 @@ public class TelaDePesquisa extends JFrame
                         return;
                     }
 
-                    try {
-                        Connection conexao = MySQLConnector.conectar();
-                        String strSqlPesquisa = "select * from `db_senac`.`tbl_senac` where `nome` like '%" + txtPesquisa.getText() + "%' or `email` like '%" + txtPesquisa.getText() + "%';";
-                        Statement stmSqlPesquisa = conexao.createStatement();
-                        ResultSet rstSqlPesquisa = stmSqlPesquisa.executeQuery(strSqlPesquisa);
-                        if (rstSqlPesquisa.next()) {
-                            lblNotificacoes.setText(setHtmlFormat("Legal! Foi(Foram) encontrado(s) resultado(s)."));
-                        } else {
-                            lblNotificacoes.setText(setHtmlFormat("Poxa vida! Não foram encontrados resultados para: \"" + txtPesquisa.getText() + "\"."));
-                        }
-                        stmSqlPesquisa.close();
-                    } catch (Exception e) {
-                        lblNotificacoes.setText(setHtmlFormat("Não foi possível prosseguir com a pesquisa! Por favor, verifique e tente novamente."));
-                        System.err.println("Erro: " + e);
-                    }
+                    NavegadorDeRegistro.pesquisar();
                 }
             }
         );
@@ -137,7 +125,7 @@ public class TelaDePesquisa extends JFrame
         txtPesquisa.requestFocus();
     }
 
-    private String setHtmlFormat(String strTexto) {
+    public static String setHtmlFormat(String strTexto) {
         return "<html><body>" + strTexto + "</body></html>";
     }
 
