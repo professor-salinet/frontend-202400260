@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.sql.*;
+// import java.sql.*;
 
 public class TelaDePesquisa extends JFrame {
     public static JLabel lblPesquisa;
@@ -39,6 +39,7 @@ public class TelaDePesquisa extends JFrame {
 
         btnPesquisar = new JButton("🔍");
         btnPesquisar.setToolTipText("Pesquisar");
+        btnPesquisar.setEnabled(false);
         linha_lblPesquisa.add(btnPesquisar);
 
         add(linha_lblPesquisa);
@@ -86,15 +87,19 @@ public class TelaDePesquisa extends JFrame {
         JPanel linha_botoes = new JPanel(new GridLayout(1, 4));
 
         btnPrimeiro = new JButton("<<");
+        btnPrimeiro.setEnabled(false);
         linha_botoes.add(btnPrimeiro);
 
         btnAnterior = new JButton("<");
+        btnAnterior.setEnabled(false);
         linha_botoes.add(btnAnterior);
 
         btnProximo = new JButton(">");
+        btnProximo.setEnabled(false);
         linha_botoes.add(btnProximo);
 
         btnUltimo = new JButton(">>");
+        btnUltimo.setEnabled(false);
         linha_botoes.add(btnUltimo);
 
         add(linha_botoes);
@@ -124,11 +129,15 @@ public class TelaDePesquisa extends JFrame {
             new KeyAdapter() {
                 @Override
                 public void keyReleased(KeyEvent e) {
-                    if (txtPesquisa.getText().trim().equals(txtUsuario) == false) {
+                    if (txtPesquisa.getText().trim().equals(txtUsuario) == false && txtPesquisa.getText().trim().length() > 0) {
                         btnPesquisar.setEnabled(true);
                     } else {
                         btnPesquisar.setEnabled(false);
                     }
+                    if (e.getKeyCode() == 10) {
+                        NavegadorDeRegistro.pesquisar();
+                    }
+                    // System.out.println(e.getKeyCode());
                 }
             }
         );
