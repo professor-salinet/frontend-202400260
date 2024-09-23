@@ -119,8 +119,53 @@ public class TelaDePesquisa extends JFrame {
                         lblNotificacoes.setText(setHtmlFormat("Por favor, digite algo e tente novamente."));
                         txtPesquisa.requestFocus();
                         return;
+                    } else {
+                        NavegadorDeRegistro.pesquisar();
                     }
-                    NavegadorDeRegistro.pesquisar();
+                }
+            }
+        );
+
+        btnPrimeiro.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    if (ntfCampoVazio() == false) {
+                        NavegadorDeRegistro.primeiroRegistro();
+                    }
+                }
+            }
+        );
+
+        btnAnterior.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    if (ntfCampoVazio() == false) {
+                        NavegadorDeRegistro.registroAnterior();
+                    }
+                }
+            }
+        );
+
+        btnProximo.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    if (ntfCampoVazio() == false) {
+                        NavegadorDeRegistro.proximoRegistro();
+                    }
+                }
+            }
+        );
+
+        btnUltimo.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    if (ntfCampoVazio() == false) {
+                        NavegadorDeRegistro.ultimoRegistro();
+                    }
                 }
             }
         );
@@ -130,14 +175,16 @@ public class TelaDePesquisa extends JFrame {
                 @Override
                 public void keyReleased(KeyEvent e) {
                     if (txtPesquisa.getText().trim().equals(txtUsuario) == false && txtPesquisa.getText().trim().length() > 0) {
+                        if (e.getKeyCode() == 10) {
+                            NavegadorDeRegistro.pesquisar();
+                        }
                         btnPesquisar.setEnabled(true);
                     } else {
                         btnPesquisar.setEnabled(false);
+                        if (e.getKeyCode() == 10) {
+                            limparCampos();
+                        }
                     }
-                    if (e.getKeyCode() == 10) {
-                        NavegadorDeRegistro.pesquisar();
-                    }
-                    // System.out.println(e.getKeyCode());
                 }
             }
         );
@@ -145,6 +192,27 @@ public class TelaDePesquisa extends JFrame {
         setSize(250, 300);
         setVisible(true);
         txtPesquisa.requestFocus();
+    }
+
+    public static boolean ntfCampoVazio() {
+        if (txtPesquisa.getText().trim().length() <= 0) {
+            lblNotificacoes.setText(setHtmlFormat("Ops! Campo vazio. Por favor, digite algo e tente novamente."));
+            txtPesquisa.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+}
+
+    public static void limparCampos() {
+        btnPesquisar.setEnabled(false);
+        txtId.setText("");
+        txtNome.setText("");
+        txtEmail.setText("");
+        btnPrimeiro.setEnabled(false);
+        btnAnterior.setEnabled(false);
+        btnProximo.setEnabled(false);
+        btnUltimo.setEnabled(false);
     }
 
     public static String setHtmlFormat(String strTexto) {
