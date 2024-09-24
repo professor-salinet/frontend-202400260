@@ -48,14 +48,13 @@ public class NavegadorDeRegistro extends TelaDePesquisa {
                 txtId.setText(rstSqlPesquisa.getString("id"));
                 txtNome.setText(rstSqlPesquisa.getString("nome"));
                 txtEmail.setText(rstSqlPesquisa.getString("email"));
-                btnPesquisar.setEnabled(false);
                 btnProximo.setEnabled(true);
                 btnUltimo.setEnabled(true);
             } else {
-                txtUsuario = txtPesquisa.getText();
-                btnPesquisar.setEnabled(false);
                 lblNotificacoes.setText(setHtmlFormat("Poxa vida! Não foram encontrados resultados para: \"" + txtPesquisa.getText() + "\"."));
             }
+            txtUsuario = txtPesquisa.getText();
+            btnPesquisar.setEnabled(false);
             stmSqlPesquisa.close();
         } catch (Exception e) {
             lblNotificacoes.setText(setHtmlFormat("Não foi possível prosseguir com a pesquisa! Por favor, verifique e tente novamente."));
