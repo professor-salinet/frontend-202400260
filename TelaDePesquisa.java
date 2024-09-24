@@ -178,13 +178,10 @@ public class TelaDePesquisa extends JFrame {
                         if (e.getKeyCode() == 10) {
                             NavegadorDeRegistro.pesquisar();
                         }
-                        btnPesquisar.setEnabled(true);
                     } else {
-                        btnPesquisar.setEnabled(false);
-                        if (e.getKeyCode() == 10) {
-                            limparCampos();
-                        }
+                        limparCampos("Digite algo para continuar.");
                     }
+                    btnPesquisar.setEnabled(true);
                 }
             }
         );
@@ -204,7 +201,7 @@ public class TelaDePesquisa extends JFrame {
         }
 }
 
-    public static void limparCampos() {
+    public static void limparCampos(String notificacao) {
         btnPesquisar.setEnabled(false);
         txtId.setText("");
         txtNome.setText("");
@@ -213,6 +210,9 @@ public class TelaDePesquisa extends JFrame {
         btnAnterior.setEnabled(false);
         btnProximo.setEnabled(false);
         btnUltimo.setEnabled(false);
+        if (notificacao.equals("") == false) {
+            lblNotificacoes.setText(setHtmlFormat(notificacao));
+        }
     }
 
     public static String setHtmlFormat(String strTexto) {
