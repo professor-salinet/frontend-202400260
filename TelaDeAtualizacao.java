@@ -99,7 +99,7 @@ public class TelaDeAtualizacao extends JFrame {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    //...
+                    NavegadorDeRegistro.limparCampos();
                 }
             }
         );
@@ -109,8 +109,7 @@ public class TelaDeAtualizacao extends JFrame {
             @Override
                 public void itemStateChanged(ItemEvent event) {
                     if (event.getStateChange() == ItemEvent.SELECTED) {
-                        System.out.println("Teste");
-                        // Aqui vai acontecer a atualização dos nomes, emails e senhas
+                        NavegadorDeRegistro.atualizarCampos(cbxId.getSelectedItem().toString());
                     }
                 } 
             }
@@ -128,7 +127,7 @@ public class TelaDeAtualizacao extends JFrame {
     }
 
     public static void main(String[] args) {
-        TelaDeAtualizacao appTelaDePesquisa = new TelaDeAtualizacao();
-        appTelaDePesquisa.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        TelaDeAtualizacao appTelaDeAtualizacao = new TelaDeAtualizacao();
+        appTelaDeAtualizacao.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }
