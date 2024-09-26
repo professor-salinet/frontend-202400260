@@ -9,12 +9,15 @@ public class TelaDeAtualizacao extends JFrame {
 
     public static JLabel lblNome;
     public static JTextField txtNome;
+    public static String nomeAtual;
 
     public static JLabel lblEmail;
     public static JTextField txtEmail;
+    public static String emailAtual;
 
     public static JLabel lblSenha;
     public static JPasswordField txtSenha;
+    public static String senhaAtual;
 
     public static JLabel lblNotificacoes;
 
@@ -90,7 +93,7 @@ public class TelaDeAtualizacao extends JFrame {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    //...
+                    NavegadorDeRegistro.atualizarId();
                 }
             }
         );
