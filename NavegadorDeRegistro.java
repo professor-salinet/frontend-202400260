@@ -42,13 +42,13 @@ public class NavegadorDeRegistro extends TelaDeAtualizacao {
                 if (atualizarNome.length() > 0 || atualizarEmail.length() > 0) {
                     atualizarSenha = " and ";
                 }
-                atualizarSenha += "`senha` = '" + txtSenha.getPassword().toString() + "'";
+                atualizarSenha += "`senha` = '" + String.valueOf(txtSenha.getPassword()) + "'";
             }
 
             if (atualizarNome.length() > 0 || atualizarEmail.length() > 0 || atualizarSenha.length() > 0) {
                 Connection conexao = MySQLConnector.conectar();
                 String strSqlAtualizarId = "update `db_senac`.`tbl_senac` set " + atualizarNome + atualizarEmail + atualizarSenha + " where `id` = " + cbxId.getSelectedItem().toString() + ";";
-                System.out.println(strSqlAtualizarId);
+                // System.out.println(strSqlAtualizarId);
                 Statement stmSqlAtualizarId = conexao.createStatement();
                 stmSqlAtualizarId.addBatch(strSqlAtualizarId);
                 stmSqlAtualizarId.executeBatch();
