@@ -33,14 +33,14 @@ public class NavegadorDeRegistro extends TelaDeAtualizacao {
 
             if (txtEmail.getText().trim().equals(emailAtual) == false) {
                 if (atualizarNome.length() > 0) {
-                    atualizarEmail = " and ";
+                    atualizarEmail = " , ";
                 }
                 atualizarEmail += "`email` = '" + txtEmail.getText() + "'";
             }
 
             if (String.valueOf(txtSenha.getPassword()).trim().equals(senhaAtual) == false) {
                 if (atualizarNome.length() > 0 || atualizarEmail.length() > 0) {
-                    atualizarSenha = " and ";
+                    atualizarSenha = " , ";
                 }
                 atualizarSenha += "`senha` = '" + String.valueOf(txtSenha.getPassword()) + "'";
             }
